@@ -1,7 +1,7 @@
 ---
-id: GDD-5011 - DataGovernance
-name: Data Governance Event Base Architecture
-version: 0.1.0
+# id: GDD-5011 - DataGovernance
+## name: Data Governance Event Base Architecture
+## version: 0.1.0
 owners:
   - Cyber Team
   - GRI Team
