@@ -1,21 +1,21 @@
 ---
-id: Orders
-name: Orders
-version: 0.0.3
+id: DataGovernance
+name: Data Governance
+version: 0.1.0
 owners:
-  - dboyne
-  - full-stack
+  - governance-team
+  - compliance-department
 services:
-  - id: InventoryService
-    version: 0.0.2
-  - id: NotificationService
-    version: 0.0.2
-  - id: OrdersService
-    version: 0.0.3
+  - id: DataCatalogService
+    version: 1.0.0
+  - id: DataQualityService
+    version: 1.0.0
+  - id: DataPrivacyService
+    version: 1.0.0
 badges:
-  - content: New domain
-    backgroundColor: blue
-    textColor: blue
+  - content: New governance process
+    backgroundColor: green
+    textColor: white
 ---
 
 import Footer from '@catalog/components/footer.astro';
@@ -23,52 +23,33 @@ import Footer from '@catalog/components/footer.astro';
 ## Overview
 
 :::warning
-Please ensure all services are updated to the latest version for compatibility and performance improvements.
+Please ensure all services adhere to the latest data governance policies and standards.
 :::
 
-The Orders domain handles all operations related to customer orders, from creation to fulfillment. This documentation provides an overview of the events and services involved in the Orders domain, helping developers and stakeholders understand the event-driven architecture.
+The Data Governance process ensures that data is managed properly, compliant with relevant regulations, and of high quality. This documentation provides an overview of the policies, roles, and services involved in the Data Governance process, helping ensure that data is reliable and secure.
 
-
-<Tiles >
-    <Tile icon="UserGroupIcon" href="/docs/teams/full-stack" title="Contact the team" description="Any questions? Feel free to contact the owners" />
-    <Tile icon="RectangleGroupIcon" href={`/visualiser/domains/${frontmatter.id}/${frontmatter.version}`} title={`${frontmatter.services.length} services are in this domain`} description="This service sends messages to downstream consumers" />
+<Tiles>
+    <Tile icon="ShieldCheckIcon" href="/docs/teams/governance-team" title="Contact the team" description="Any questions? Feel free to contact the governance team" />
+    <Tile icon="DatabaseIcon" href={`/visualiser/domains/${frontmatter.id}/${frontmatter.version}`} title={`${frontmatter.services.length} services are involved in this process`} description="These services ensure data governance compliance" />
 </Tiles>
-
-
 
 ## Bounded context
 
 <NodeGraph />
 
-### Order example (sequence diagram)
+### Data Governance Workflow (sequence diagram)
 
 ```mermaid
 sequenceDiagram
-    participant Customer
-    participant OrdersService
-    participant InventoryService
-    participant NotificationService
+    participant DataOwner
+    participant DataCatalogService
+    participant DataQualityService
+    participant DataPrivacyService
 
-    Customer->>OrdersService: Place Order
-    OrdersService->>InventoryService: Check Inventory
-    InventoryService-->>OrdersService: Inventory Available
-    OrdersService->>InventoryService: Reserve Inventory
-    OrdersService->>NotificationService: Send Order Confirmation
-    NotificationService-->>Customer: Order Confirmation
-    OrdersService->>Customer: Order Placed Successfully
-    OrdersService->>InventoryService: Update Inventory
-```
-
-## Flows
-
-### Cancel Subscription flow
-Documented flow when a user cancels their subscription.
-
-<Flow id="CancelSubscription" version="latest" includeKey={false} />
-
-### Payment processing flow
-Documented flow when a user makes a payment within the order domain
-
-<Flow id="PaymentFlow" version="latest" includeKey={false} />
-
-<Footer />  
+    DataOwner->>DataCatalogService: Submit Data
+    DataCatalogService->>DataQualityService: Validate Data Quality
+    DataQualityService-->>DataCatalogService: Data Quality Approved
+    DataCatalogService->>DataPrivacyService: Ensure Data Privacy Compliance
+    DataPrivacyService-->>DataCatalogService: Privacy Compliance Approved
+    DataCatalogService->>DataOwner: Data Submission Successful
+    DataCatalogService->>DataRepository: Store Data
