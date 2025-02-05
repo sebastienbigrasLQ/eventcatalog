@@ -1,8 +1,12 @@
 ---
-id: DataGovernance
-name: Data Governance
+id: GDD-5011 - DataGovernance
+name: Data Governance Event Base Architecture
 version: 0.1.0
 owners:
+  - Cyber Team
+  - GRI Team
+  - PACSI Project Team
+  - Infra Team
   - governance-team
   - compliance-department
 services:
